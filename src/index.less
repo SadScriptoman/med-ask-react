@@ -75,6 +75,7 @@
        -ms-flex-pack: center;
     -webkit-justify-content: center;
         justify-content: center;
+    flex-direction: column;
 }
 
 h1{
@@ -110,37 +111,37 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-form.was-validated{
+.info{
+    margin-top: 7px;
+    padding: 0 20px;
+    width: 100%;
+    font-size: 14px;
+    z-index: 10;
+    
+    &.hidden{
+        display: none;
+    }
+}
+
+form.was-validated, .insurance-services-block{
     input[type="text"], 
     input[type="password"], 
     input[type="email"], 
     input[type="number"]{
         &:invalid{
-            border-color: @input-invalid;
+            border-color: @input-invalid!important;
             + .info{
                 color: @input-invalid;
-                opacity: 1;
-            }
-        }
-        &:valid{
-            border-color: @input-valid;
-            + .info{
-                color: @input-valid;
-                opacity: 1;
+                display: block;
             }
         }
     }
-}
-.info{
-
-    margin-top: 7px;
-    padding: 0 20px;
-    width: 100%;
-    font-size: 14px;
-    
-    .transition(opacity);
-    &.hidden{
-        opacity: 0;
+    .invalid{
+        border-color: @input-invalid!important;
+        + .info{
+            color: @input-invalid;
+            display: block;
+        }
     }
 }
 
@@ -160,13 +161,16 @@ input[type="number"]{
     border: 1px solid @input-border;
     border-radius: 15px;
     outline: none;
-
     &:focus{
-        border-color: @input-valid;
+        border-color: @green; 
     }
     &::-webkit-input-placeholder{
         font-size: 14px;
     }
+    &.show-due + .info.hidden, &.show-tel + .info.hidden{
+        display: block;
+    }
+    
 }
 
 button:not(.btn-no-style){
@@ -181,7 +185,7 @@ button:not(.btn-no-style){
     &.red{
         color: @red;
         border-color: @red;
-        &:hover{
+        &.ready{
             background-color: @red;
             color: white;
         }
@@ -190,7 +194,7 @@ button:not(.btn-no-style){
     &.green{
         color: @green;
         border-color: @green;
-        &:hover{
+        &.ready{
             background-color: @green;
             color: white;
         }
@@ -204,12 +208,12 @@ body{
     .mobile-min({margin: 20px; min-height: ~"calc(100vh - 40px)";});
 
     .centered-content .insurance-form-container{
-        max-width: 967px;
+        width: 967px;
         
         padding: 55px 95px;
         background: #FFFFFF;
         .mobile-min({border-radius: 15px;});
-        .tablet-max({padding: 35px;});
+        .tablet-max({width: 100%; padding: 35px;});
         .mobile-max({padding: 15px; min-height: 100vh;});
     }
 }
@@ -301,9 +305,9 @@ body{
         flex-wrap: wrap;
 
         width: 100%;
-        margin-bottom: 43px;
+        margin-bottom: 40px;
 
-        .tablet-max({margin-bottom: 30px;});
+        .tablet-max({margin-bottom: 20px;});
 
         //Поле номера полиса
         .form-group{
@@ -324,6 +328,11 @@ body{
 
     //Блок с выбором услуг
     .insurance-services-block{
+        position: relative;
+        
+        display: flex;
+        flex-direction: column;
+
         width: 100%;
         margin-bottom: 40px;
 
@@ -336,16 +345,19 @@ body{
             .tablet-max({margin-bottom: 10px;});
             .mobile-max({font-size: 14px;});
         }
+
+
+
         .insurance-services-list{
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             flex-wrap: wrap;
 
-            margin-top: 38px;
+            margin-top: 25px;
             padding: 0 22px;
 
-            .mobile-max({margin-top: 20px; padding: 0;});
+            .mobile-max({margin-top: 15px; padding: 0;});
 
             .service-item{
                 position: relative;
@@ -389,19 +401,32 @@ body{
             border-radius: 15px;
             font-size: 14px;
 
-            //Поле поиска
-            input[type="search"]{
-                display: block;
+            
+            label{
+                display: flex;
 
-                width: 100%;
-                min-height: 35px;
-                padding: 0 10px 0 20px;
-                outline: none;
-                border: none;
-                &::-webkit-input-placeholder{
-                    font-size: 14px;
+                justify-content: space-between;
+                align-items: center;
+                img{
+                    margin-left: 20px;
+                }
+                input[type="search"]{
+                    display: block;
+    
+                    width: 100%;
+                    min-height: 35px;
+                    padding: 0 10px 0 20px;
+                    outline: none;
+                    border: none;
+                    &::-webkit-input-placeholder{
+                        font-size: 14px;
+                    }
+                    &.with-img{
+                        padding: 0 10px;
+                    }
                 }
             }
+            //Поле поиска
 
             //Выпадающий список под полем поиска
             .search-list{
@@ -443,9 +468,17 @@ body{
                     max-height: ~"calc(39px * 3)";
                 }
             }
+            &.valid{
+                border-color: @input-border;
+                + .info{
+                    color: black;
+                    display: block;
+                }
+            }
 
             + .info{
                 margin-top: 43px;
+                .tablet-min({height: 16px;});
             }
         }
     }
@@ -457,4 +490,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+footer{
+    margin-top: 30px;
+    opacity: 0.5;
 }
