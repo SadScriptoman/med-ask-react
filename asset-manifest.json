@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/med-ask-react/static/css/main.5f44ce0a.chunk.css",
+    "main.js": "/med-ask-react/static/js/main.ae940b06.chunk.js",
+    "main.js.map": "/med-ask-react/static/js/main.ae940b06.chunk.js.map",
+    "runtime-main.js": "/med-ask-react/static/js/runtime-main.5fbfe1ae.js",
+    "runtime-main.js.map": "/med-ask-react/static/js/runtime-main.5fbfe1ae.js.map",
+    "static/js/2.eb700878.chunk.js": "/med-ask-react/static/js/2.eb700878.chunk.js",
+    "static/js/2.eb700878.chunk.js.map": "/med-ask-react/static/js/2.eb700878.chunk.js.map",
+    "index.html": "/med-ask-react/index.html",
+    "precache-manifest.35b754637a6256c381c55c367925237d.js": "/med-ask-react/precache-manifest.35b754637a6256c381c55c367925237d.js",
+    "service-worker.js": "/med-ask-react/service-worker.js",
+    "static/css/main.5f44ce0a.chunk.css.map": "/med-ask-react/static/css/main.5f44ce0a.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5fbfe1ae.js",
+    "static/js/2.eb700878.chunk.js",
+    "static/css/main.5f44ce0a.chunk.css",
+    "static/js/main.ae940b06.chunk.js"
+  ]
+}
